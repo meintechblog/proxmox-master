@@ -4,12 +4,17 @@
 # Editor
 .vscode/
 .idea/
+*.swp
 
 # Node (falls später relevant)
 node_modules/
 npm-debug.log*
+
+# Secrets — NIEMALS nach GitHub syncen
+secrets/
+*.secret
+*-credentials.txt
+*-credentials.md
 .env
 .env.local
-
-# Secrets
-secrets/
+*.env
