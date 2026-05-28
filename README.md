@@ -8,10 +8,13 @@ Single-Point-of-Truth für alles **Proxmox** im Setup von [@meintechblog](https:
 - **Proxmox Backup Server** (PBS, `192.168.3.9`, Datastore `PBS3`, 1,8 TB)
 - Lifecycle, Wartung, Backups, Restore-Prozeduren
 
+GitHub: **`meintechblog/proxmox-master` (private)**.
+
 Konsolidiert aus dem früheren Repo
 [`backup-master`](https://github.com/meintechblog/backup-master) (2026-05-28).
-Der alte Remote bleibt als read-only-Mirror erhalten — siehe „Hinweis zur
-curl-Install-URL" unten.
+Der alte Remote bleibt als **public read-only-Mirror** erhalten, weil das
+curl-Onboarding ihn braucht (privates Repo kann raw-curl nicht ohne Token
+bedienen) — siehe „Hinweis zur curl-Install-URL" unten.
 
 ---
 
@@ -63,11 +66,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/backup-mast
 IP-Oktett>` oder ein Standort-Name wie `knausi`). Wird `PBS_PASSWORD` nicht
 gesetzt, fragt das Skript interaktiv.
 
-> **Hinweis zur curl-Install-URL.** Die obige curl-URL zeigt bewusst auf den
-> alten `backup-master`-Mirror, weil bestehende Onboarding-Anleitungen und
-> Doku-Snippets auf diesen Pfad verweisen. Source-of-Truth für Änderungen ist
-> ab 2026-05-28 dieses Repo (`proxmox-master`); das Skript muss nach
-> backup-master gemirrort werden, bis Jörg den Schalter umlegt.
+> **Hinweis zur curl-Install-URL.** Die curl-URL zeigt bewusst auf den
+> **public** `backup-master`-Mirror. Grund: `proxmox-master` ist **private**,
+> und `raw.githubusercontent.com` liefert private Repos nur mit Token aus — den
+> wollen wir nicht im One-Liner. Source-of-Truth für Änderungen ist dieses Repo
+> (`proxmox-master`); das Skript muss bei jeder Änderung nach backup-master
+> **mirror-gepusht** werden (public lassen), sonst driften die curl-Hosts ab.
+> Der Mirror kann erst weg, wenn proxmox-master public wird oder ein anderer
+> tokenfreier Skript-Pfad existiert.
 
 ### Parameter
 

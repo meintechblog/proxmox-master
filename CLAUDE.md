@@ -46,14 +46,31 @@ Diese Session ist Teil des claude-peers-Netzwerks (Hub = agent-master / „Hulki
 auf `localhost:7890`). Cross-Repo-Fragen gehen via
 `mcp__claude-peers__send_message`, nicht via Repo-Wechsel.
 
-## Migration aus backup-master (2026-05-28)
+## GitHub-Remote
 
-Das frühere Repo `backup-master` (github.com/meintechblog/backup-master, 4
-Commits) ist hierher konsolidiert. Der alte GitHub-Remote bleibt als
-read-only-Mirror bestehen, weil das Onboarding-Skript per
+Dieses Repo liegt auf **`github.com/meintechblog/proxmox-master` (PRIVATE)**
+(angelegt 2026-05-29). `origin` ist gesetzt, `main` trackt. Push wie üblich.
+
+**Niemals** Secrets/persönliche Daten committen — `secrets/` ist gitignored,
+PBS-Passwort & Co. bleiben ausschließlich lokal in `secrets/CREDENTIALS.md`.
+Der TLS-Fingerprint im Installer ist bewusst drin (kein Credential, nötig für
+curl-Onboarding, ohnehin im public Mirror).
+
+## Migration aus backup-master (2026-05-28 → 2026-05-29)
+
+Das frühere Repo `backup-master` ist hierher konsolidiert; der lokale Klon
+`~/codex/backup-master` wurde am 2026-05-29 gelöscht.
+
+**Warum der backup-master-GitHub-Mirror trotzdem bleiben MUSS:** Das
+Onboarding-Skript wird per
 `curl raw.githubusercontent.com/meintechblog/backup-master/main/installer/…`
-geladen wird und auf bestehenden Hosts dieser Pfad nicht stirbt.
+geladen — also **ohne Token**. Das geht nur bei einem **public** Repo.
+`proxmox-master` ist **private**, kann die raw-curl-URL also nicht bedienen.
+Deshalb:
 
-Source-of-Truth für Änderungen am Skript / an der Doku ist ab jetzt
-**dieses Repo**. Wenn das Installer-Skript geändert wird, muss es nach
-backup-master mirror-gepusht werden, sonst driften die curl-Hosts ab.
+- **Source-of-Truth** für Skript + Doku ist ab jetzt **dieses Repo**.
+- Das Installer-Skript muss bei jeder Änderung nach backup-master
+  **mirror-gepusht** werden (public bleiben lassen), sonst driften die
+  curl-Hosts ab.
+- Der Mirror kann erst sterben, wenn entweder proxmox-master public wird ODER
+  ein anderer tokenfreier Hosting-Pfad fürs Skript existiert.

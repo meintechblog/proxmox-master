@@ -29,6 +29,15 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
     Subdir → kein Wissen zu migrieren.
   - README: kaputten Memory-Pointer gefixt (Live-Wissen liegt im **globalen**
     `-Users-user/memory/`, nicht im Projekt-Memory).
+- ✅ **GitHub-Remote angelegt: `meintechblog/proxmox-master` (PRIVATE)**
+  - Secret-Scan vor Push: secrets/ untracked + gitignored, PBS-Passwort nirgends
+    (auch nicht in History), keine persönlichen Emails/Tokens. Einziger Fund:
+    TLS-Fingerprint im Installer — bewusst drin (kein Credential, curl-nötig,
+    ohnehin im public Mirror).
+  - `origin` gesetzt, `main` trackt, 5 Commits gepusht.
+  - **Folge:** Da privat, kann die curl-URL NICHT auf proxmox-master umgebogen
+    werden (raw braucht Token) → backup-master bleibt als **public Mirror** +
+    der Skript-Mirror-Zwang bleibt bestehen. Registry-Eintrag bleibt (Sentinel).
 
 ## Erledigt (2026-05-28)
 
@@ -83,22 +92,22 @@ Aus `project_proxmox_infra_session_handoff.md`:
 ## Offene Folge-Tasks aus der Migration
 
 - [x] ~~Lokalen backup-master-Klon löschen~~ — **erledigt 2026-05-29**.
-- [ ] **GitHub-Strategie für proxmox-master festlegen** (Jörg-Decision) —
-  **blockt alles Folgende**: Neuer Remote `meintechblog/proxmox-master`?
-  Privat oder public?
-- [ ] **Wenn neuer Remote:** Installer-Skript dorthin pushen + curl-URL in
-  README/docs/Skript auf proxmox-master umbiegen. **Erst danach** kann der alte
-  backup-master-Mirror weg.
-- [ ] **backup-master GitHub-Repo:** NUR archivieren (`gh repo archive`), **nicht
-  löschen**, solange die curl-URL noch dorthin zeigt. Sobald curl umgebogen ist:
-  README dort als Redirect-Stub, dann ggf. löschen.
-- [ ] **Hub-Registry-Cleanup**: agent-master soll `backup-master` aus
-  `data/registry.json` entfernen (Bitte raus an Hub geht, sobald oben durch).
-- [ ] **Memory-Konsolidierung (Jörg-Decision):** Die 6 globalen `project_prox*`-
-  Files liegen in `-Users-user/memory/` (auto-load in *jeder* Session). Sollen
-  sie ins proxmox-master-Projekt-Memory wandern? Tradeoff: dann finden andere
-  Repos (energy-/wallbox-/venusos-master), die auf dieselben Hosts zugreifen, sie
-  nicht mehr automatisch. Empfehlung: **global lassen** (Hosts sind cross-cutting).
+- [x] ~~GitHub-Strategie festlegen + Remote anlegen~~ — **erledigt 2026-05-29**:
+  `meintechblog/proxmox-master` **private** angelegt, gepusht.
+- [ ] **backup-master-Mirror bleibt — kein Cleanup möglich solange proxmox
+  privat:** Die curl-URL kann nicht auf ein privates Repo zeigen (Token-Zwang).
+  Also: Skript-Mirror-Pflicht bleibt, backup-master bleibt public, Registry-
+  Eintrag bleibt Sentinel. **Erst wenn proxmox-master public wird** (oder ein
+  tokenfreier Skript-Pfad existiert): curl umbiegen → backup-master archivieren
+  → Registry-Eintrag raus.
+- [ ] **Installer-Skript-Sync-Disziplin:** Jede Änderung an
+  `installer/onboard-pbs-host.sh` muss nach backup-master mirror-gepusht werden,
+  sonst driften curl-Hosts. (Aktuell beide byte-identisch.)
+- [x] ~~Memory-Konsolidierung~~ — **erledigt 2026-05-29**: 6 globale
+  `project_prox*`-Files bleiben **global** in `-Users-user/memory/` (Hosts sind
+  cross-repo: energy-/wallbox-/venusos-master greifen drauf zu). Stale Pointer
+  (backup-master-Lokalität, proxmox-maintenance-cwd) bereinigt; Bridge-Pointer
+  ins Projekt-Memory ergänzt.
 
 ## Resume-Befehl
 
