@@ -116,9 +116,19 @@ dieser Ordner ist `.gitignore` und wird **nicht** nach GitHub gesynct.
 ## Wartung der Haupt-Hosts (proxi / proxi3)
 
 Wartung-Backlog (APT-Upgrade, Snapshot-Cleanup, TRIM, Machine-Type-Pinning
-für VMs, …) steht in [`NEXT.md`](NEXT.md). Live-State-of-the-World plus
-historische Lessons Learned in den Memory-Files unter
-`~/.claude/projects/-Users-user-codex-proxmox-master/memory/`.
+für VMs, …) steht in [`NEXT.md`](NEXT.md).
+
+**Wo das Live-Wissen liegt (Claude-Memory):**
+
+| Pfad | Inhalt |
+|---|---|
+| `~/.claude/projects/-Users-user/memory/` (global, repo-agnostisch) | **Live-State-of-the-World**: Host-Inventar, offene Wartung, Powersave, Infra-Handoffs — global, weil auch energy-/wallbox-/venusos-Sessions auf dieselben Hosts zugreifen. |
+| `~/.claude/projects/-Users-user-codex-proxmox-master/memory/` | proxmox-master-**session-spezifisch** (z. B. Sonnet-first-Feedback). |
+
+Konkrete globale Files: `project_proxmox_hosts.md`,
+`project_proxi_maintenance_pending.md`, `project_proxmox_powersave.md`,
+`project_proxmox_infra_session_handoff.md`,
+`project_proxmox_maintenance_next_handoff.md`, `project_proxmenux_proxi.md`.
 
 ---
 
