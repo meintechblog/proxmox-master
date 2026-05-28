@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Node (falls später relevant)
+node_modules/
+npm-debug.log*
+.env
+.env.local
+
+# Secrets
+secrets/
