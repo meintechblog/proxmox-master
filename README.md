@@ -8,13 +8,17 @@ Single-Point-of-Truth für alles **Proxmox** im Setup von [@meintechblog](https:
 - **Proxmox Backup Server** (PBS, `192.168.3.9`, Datastore `PBS3`, 1,8 TB)
 - Lifecycle, Wartung, Backups, Restore-Prozeduren
 
-GitHub: **`meintechblog/proxmox-master` (private)**.
+GitHub: **`meintechblog/proxmox-master` (public)** — das curl-Onboarding lädt das
+Installer-Skript direkt von hier (tokenfrei via `raw.githubusercontent.com`).
 
-Konsolidiert aus dem früheren Repo
-[`backup-master`](https://github.com/meintechblog/backup-master) (2026-05-28).
-Der alte Remote bleibt als **public read-only-Mirror** erhalten, weil das
-curl-Onboarding ihn braucht (privates Repo kann raw-curl nicht ohne Token
-bedienen) — siehe „Hinweis zur curl-Install-URL" unten.
+Konsolidiert aus dem früheren Repo `backup-master` (2026-05-28/29); dieses Repo
+ist jetzt die alleinige Single-Source-of-Truth. Der alte `backup-master`-Mirror
+wird abgelöst und archiviert.
+
+> **Hinweis:** Das Repo ist bewusst public, damit das tokenfreie curl-Onboarding
+> funktioniert. Es enthält **keine** Secrets (PBS-Passwort etc. liegen nur lokal
+> in `secrets/`, gitignored). Interne RFC1918-IPs/Hostnamen sind dokumentiert —
+> das ist Absicht (Infra-Doku), kein Sicherheitsrisiko (nicht von außen routbar).
 
 ---
 
@@ -59,21 +63,16 @@ Direkt auf dem Proxmox-VE-Host (als root):
 
 ```bash
 NAMESPACE=proxmox-xyz PBS_PASSWORD='DAS_PBS_PASSWORT' \
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/backup-master/main/installer/onboard-pbs-host.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/proxmox-master/main/installer/onboard-pbs-host.sh)"
 ```
 
 `NAMESPACE` muss **eindeutig pro Host** sein (Konvention: `proxmox-<letztes
 IP-Oktett>` oder ein Standort-Name wie `knausi`). Wird `PBS_PASSWORD` nicht
 gesetzt, fragt das Skript interaktiv.
 
-> **Hinweis zur curl-Install-URL.** Die curl-URL zeigt bewusst auf den
-> **public** `backup-master`-Mirror. Grund: `proxmox-master` ist **private**,
-> und `raw.githubusercontent.com` liefert private Repos nur mit Token aus — den
-> wollen wir nicht im One-Liner. Source-of-Truth für Änderungen ist dieses Repo
-> (`proxmox-master`); das Skript muss bei jeder Änderung nach backup-master
-> **mirror-gepusht** werden (public lassen), sonst driften die curl-Hosts ab.
-> Der Mirror kann erst weg, wenn proxmox-master public wird oder ein anderer
-> tokenfreier Skript-Pfad existiert.
+> **Hinweis zur curl-Install-URL.** Die curl-URL lädt direkt aus diesem (public)
+> Repo — kein Token nötig, kein Mirror mehr. Source-of-Truth ist allein
+> `proxmox-master`; das frühere `backup-master`-Repo ist abgelöst/archiviert.
 
 ### Parameter
 
@@ -128,8 +127,8 @@ für VMs, …) steht in [`NEXT.md`](NEXT.md).
 
 | Pfad | Inhalt |
 |---|---|
-| `~/.claude/projects/-Users-user/memory/` (global, repo-agnostisch) | **Live-State-of-the-World**: Host-Inventar, offene Wartung, Powersave, Infra-Handoffs — global, weil auch energy-/wallbox-/venusos-Sessions auf dieselben Hosts zugreifen. |
-| `~/.claude/projects/-Users-user-codex-proxmox-master/memory/` | proxmox-master-**session-spezifisch** (z. B. Sonnet-first-Feedback). |
+| `~/.claude/projects/-Users-&lt;user&gt;/memory/` (global, repo-agnostisch) | **Live-State-of-the-World**: Host-Inventar, offene Wartung, Powersave, Infra-Handoffs — global, weil auch energy-/wallbox-/venusos-Sessions auf dieselben Hosts zugreifen. |
+| `~/.claude/projects/-Users-&lt;user&gt;-codex-proxmox-master/memory/` | proxmox-master-**session-spezifisch** (z. B. Sonnet-first-Feedback). |
 
 Konkrete globale Files: `project_proxmox_hosts.md`,
 `project_proxi_maintenance_pending.md`, `project_proxmox_powersave.md`,

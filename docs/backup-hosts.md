@@ -83,7 +83,7 @@ Siehe `../README.md` → "Backup: Neuen Host an den PBS anbinden". Kurz:
 
 ```bash
 NAMESPACE=proxmox-<oktett> PBS_PASSWORD='...' \
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/backup-master/main/installer/onboard-pbs-host.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/proxmox-master/main/installer/onboard-pbs-host.sh)"
 ```
 
 Danach hier eine Zeile ergänzen.

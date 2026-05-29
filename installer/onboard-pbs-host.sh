@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# backup-master :: PBS-Onboarding fuer einen Proxmox-VE-Host
+# proxmox-master :: PBS-Onboarding fuer einen Proxmox-VE-Host
 # ---------------------------------------------------------
 # Bindet einen Proxmox-VE-Host an den zentralen Proxmox Backup Server an
 # und legt einen wiederkehrenden Backup-Job fuer ALLE Gaeste an.
@@ -12,7 +12,7 @@
 # Aufruf direkt auf dem Proxmox-VE-Host (als root):
 #
 #   NAMESPACE=proxmox-xyz PBS_PASSWORD='...' \
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/backup-master/main/installer/onboard-pbs-host.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/meintechblog/proxmox-master/main/installer/onboard-pbs-host.sh)"
 #
 # Wird PBS_PASSWORD nicht gesetzt, fragt das Skript interaktiv.
 #
@@ -122,7 +122,7 @@ else
     --mode "$MODE" \
     --enabled 1 \
     --notes-template "{{guestname}}" \
-    --comment "backup-master: alle Gaeste -> $PBS_DATASTORE/$NAMESPACE" >/dev/null
+    --comment "proxmox-master: alle Gaeste -> $PBS_DATASTORE/$NAMESPACE" >/dev/null
   ok "Backup-Job angelegt."
 fi
 

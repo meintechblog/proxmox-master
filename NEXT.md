@@ -21,7 +21,7 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
 ## Session-Anker
 
-- Cwd `/Users/user/codex/proxmox-master` ist seit 2026-05-28 **inhaltlich
+- Cwd `~/codex/proxmox-master` ist seit 2026-05-28 **inhaltlich
   bestückt** (vorher leerer Anker). Enthält die konsolidierten
   Backup-Master-Inhalte: `docs/`, `installer/`, `secrets/`.
 - Mission-Scope steht in `CLAUDE.md`, vollständige Übersicht in `README.md`.
@@ -73,7 +73,7 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
     `-codex-proxmox-maintenance`): nur Session-Transkripte, **kein** `memory/`-
     Subdir → kein Wissen zu migrieren.
   - README: kaputten Memory-Pointer gefixt (Live-Wissen liegt im **globalen**
-    `-Users-user/memory/`, nicht im Projekt-Memory).
+    `-Users-&lt;user&gt;/memory/`, nicht im Projekt-Memory).
 - ✅ **GitHub-Remote angelegt: `meintechblog/proxmox-master` (PRIVATE)**
   - Secret-Scan vor Push: secrets/ untracked + gitignored, PBS-Passwort nirgends
     (auch nicht in History), keine persönlichen Emails/Tokens. Einziger Fund:
@@ -138,18 +138,17 @@ Aus `project_proxmox_infra_session_handoff.md`:
 
 - [x] ~~Lokalen backup-master-Klon löschen~~ — **erledigt 2026-05-29**.
 - [x] ~~GitHub-Strategie festlegen + Remote anlegen~~ — **erledigt 2026-05-29**:
-  `meintechblog/proxmox-master` **private** angelegt, gepusht.
-- [ ] **backup-master-Mirror bleibt — kein Cleanup möglich solange proxmox
-  privat:** Die curl-URL kann nicht auf ein privates Repo zeigen (Token-Zwang).
-  Also: Skript-Mirror-Pflicht bleibt, backup-master bleibt public, Registry-
-  Eintrag bleibt Sentinel. **Erst wenn proxmox-master public wird** (oder ein
-  tokenfreier Skript-Pfad existiert): curl umbiegen → backup-master archivieren
-  → Registry-Eintrag raus.
-- [ ] **Installer-Skript-Sync-Disziplin:** Jede Änderung an
-  `installer/onboard-pbs-host.sh` muss nach backup-master mirror-gepusht werden,
-  sonst driften curl-Hosts. (Aktuell beide byte-identisch.)
+  `meintechblog/proxmox-master` angelegt, gepusht.
+- [x] ~~backup-master auflösen~~ — **erledigt 2026-05-29** (Jörg-Entscheidung:
+  proxmox-master public). PII/Secret-Scan sauber → `/Users/user`-Username per
+  filter-repo aus History gescrubbt (`user`→`user`) → Repo **public** → curl-URL
+  in README/docs/installer auf proxmox-master umgebogen → tokenfrei verifiziert.
+  Kein Mirror-Zwang mehr. Hub getriggert: archiviert backup-master + zieht
+  Registry-Sentinel + Constraint-Memory.
+- ✅ **Source-of-Truth = allein proxmox-master.** Skript-Änderungen brauchen
+  KEINEN Mirror-Push mehr (backup-master abgelöst).
 - [x] ~~Memory-Konsolidierung~~ — **erledigt 2026-05-29**: 6 globale
-  `project_prox*`-Files bleiben **global** in `-Users-user/memory/` (Hosts sind
+  `project_prox*`-Files bleiben **global** in `-Users-&lt;user&gt;/memory/` (Hosts sind
   cross-repo: energy-/wallbox-/venusos-master greifen drauf zu). Stale Pointer
   (backup-master-Lokalität, proxmox-maintenance-cwd) bereinigt; Bridge-Pointer
   ins Projekt-Memory ergänzt.
