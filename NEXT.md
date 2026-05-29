@@ -20,9 +20,12 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
   prox2-123 (produktiv) unangetastet. **Offen (Jörg):** Rollback nach 4 Tagen clean
   überhaupt noch behalten oder CT 123 retiren? (tvheadend-master flaggt's dir.)
 - **Statische IPs im DHCP-Range (.100–.250) → langfristig UDM-Reservationen:**
-  .145 energy-master, .178 camping-master (proxi), .249 ip-cam-master, .104
-  tvheadend (prox2), .126 vibe-pi-x86 (VM, proxi). Plus CT139 .161 (DHCP, sticky).
-  unifi-master hat die Liste; Umstellung auf Reservationen ist sein Revier.
+  .104 tvheadend (prox2, BC:24:11:1B:0A:49), .145 energy-master (BC:24:11:50:55:2E),
+  .161 ulanzi-master (DHCP, BC:24:11:C4:CA:07), .178 camping-master (BC:24:11:B9:34:1E),
+  .249 ip-cam-master (BC:24:11:97:41:2B). unifi-master hat die MAC-Liste; setzt
+  Reservationen auf Jörgs Go (sein Revier).
+  - `.126 vibe-pi-x86` (VM 126) am 2026-05-29 dauerhaft aus (onboot=0, Jörg via
+    unifi-master) → aus der Liste raus.
 
 ## Session-Anker
 
