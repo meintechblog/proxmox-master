@@ -2,6 +2,15 @@
 
 Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
+## 🔴 DRINGEND offen (2026-05-29 entdeckt)
+
+- **Zentraler PBS / QNAP offline.** proxi (.2) **und** Mac erreichen weder die
+  PBS-VM `192.168.3.9:8007` noch den QNAP-Host `qi` `192.168.3.219` (ping +
+  :8007 fail von beiden Seiten). → ganzer **QNAP TVS-1282 down**, PBS-VM mit ihm.
+  **Folge:** PBS3-Backup-Zweig ist für ALLE Hosts (proxi/prox2/Knausi/Simmelbude)
+  tot; Doppel-Coverage degradiert auf nur-Synology. Klären: QNAP absichtlich aus
+  (Wartung) oder echter Ausfall? Letzte proxi-vzdump-Tasklogs: 23./24./25.05.
+
 ## Session-Anker
 
 - Cwd `/Users/user/codex/proxmox-master` ist seit 2026-05-28 **inhaltlich
@@ -13,6 +22,15 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
 ## Heute erledigt (2026-05-29)
 
+- ✅ **LXC für ulanzi-master/awtrix-master provisioniert** (Cross-Repo-Auftrag
+  via Peer): **CT 139 `ulanzi-master`** auf proxi, IP 192.168.3.161 (DHCP, MAC
+  `BC:24:11:C4:CA:07`), Debian 13, unprivileged, 2 vCPU/2 GB/8 GB, Node v22.22.2,
+  passwortloser Mac-root-SSH verifiziert, Port-80-Bind getestet. Deploy-Ziel
+  `/opt/ulanzi-master/` + Unit `ulanzi-master.service` (Haus-Konvention).
+  - **Cutover-pending:** alter Manager `.163` = **CT 124 `ulanzi-gateway`** (proxi,
+    Python). Auf Peer-Signal: snapshot → onboot 0 → stop → rename `-DEPRECATED`.
+  - **Offen:** .161 als feste IP via UDM-DHCP-Reservation pinnen (mit unifi-master/
+    Jörg). Aktuell sticky DHCP.
 - ✅ **Migration-Verifikation + backup-master endgültig aufgeräumt**
   - Alle backup-master-Files gegen proxmox-master gedifft → proxmox ist echtes
     Superset, **kein Inhalt verloren** (pbs-server.md / installer / CREDENTIALS
