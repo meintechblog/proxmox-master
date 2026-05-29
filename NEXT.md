@@ -143,10 +143,15 @@ Aus `project_proxmox_infra_session_handoff.md`:
   proxmox-master public). PII/Secret-Scan sauber → OS-Username aus `/Users/…`-
   Pfaden per filter-repo aus History gescrubbt (→`user`) → Repo **public** → curl-URL
   in README/docs/installer auf proxmox-master umgebogen → tokenfrei verifiziert.
-  Kein Mirror-Zwang mehr. Hub getriggert: archiviert backup-master + zieht
-  Registry-Sentinel + Constraint-Memory.
+  Kein Mirror-Zwang mehr. **Hub-Teardown bestätigt (2026-05-29):** backup-master
+  GitHub-Repo ARCHIVIERT (reversibel, nicht gelöscht), Registry-Sentinel gezogen,
+  Constraint-Memory gelöscht, neuer Pfad unabhängig gegengecheckt. backup-master
+  ist Geschichte.
 - ✅ **Source-of-Truth = allein proxmox-master.** Skript-Änderungen brauchen
   KEINEN Mirror-Push mehr (backup-master abgelöst).
+- [ ] **Pending (Hub legt Jörg per MC vor):** Soll der `Hub-Anbindung/Hulki`-
+  Abschnitt aus der jetzt-public CLAUDE.md raus (nur hier oder generell alle
+  public Repos)? Kein Secret/PII — bis Jörgs Entscheidung NICHT trimmen.
 - [x] ~~Memory-Konsolidierung~~ — **erledigt 2026-05-29**: 6 globale
   `project_prox*`-Files bleiben **global** in `-Users-&lt;user&gt;/memory/` (Hosts sind
   cross-repo: energy-/wallbox-/venusos-master greifen drauf zu). Stale Pointer
