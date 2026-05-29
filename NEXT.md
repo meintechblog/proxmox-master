@@ -2,6 +2,23 @@
 
 Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
+## ⏯️ Resume-Schnellblick (2026-05-29)
+
+Session idle, alles committet + gepusht, GitHub in sync. Heute fertig:
+- **proxmox-master ist PUBLIC** (PII-Scan + History-Scrub), **backup-master
+  vollständig aufgelöst** (Hub-Teardown bestätigt), curl-Onboarding tokenfrei live.
+- **2 LXCs provisioniert:** CT 139 `ulanzi-master` (.161) + CT 144 `unifi-kb` (.155),
+  beide mit Deploy-Key — Peers deployen die Apps selbst.
+- **LAN-Hygiene:** .178- & .104-Konflikte gelöst, DHCP-Reservations live, VM 126 aus,
+  prox2-CT123 → `tvheadend-master` umbenannt, proxi-CT123 Cold-Rollback entschärft+behalten.
+- **Memory konsolidiert**, CLAUDE.md public-hygienisch getrimmt.
+
+**Nichts dringend offen.** QNAP/PBS sind bewusst aus (kein Backup-Issue, Synology deckt ab).
+Nächste sinnvolle Arbeit = der **Wartungs-Backlog (Phase 2+3 weiter unten)** sobald
+Wartungsfenster (APT-Upgrade+Reboot, Snapshots, Machine-Type-Pin, Swap, LXC-discard).
+Evtl. später: CT124 destroy (alter ulanzi-gateway, nach PBS-Backup), CT123-Rollback
+in ~1-2 Wochen neu bewerten.
+
 ## Status offene Punkte (Stand 2026-05-29)
 
 - ✅ **QNAP/PBS-Offline = absichtlich** (Jörg, 2026-05-29). QNAP `qi` (.219) +
