@@ -27,8 +27,12 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
   `BC:24:11:C4:CA:07`), Debian 13, unprivileged, 2 vCPU/2 GB/8 GB, Node v22.22.2,
   passwortloser Mac-root-SSH verifiziert, Port-80-Bind getestet. Deploy-Ziel
   `/opt/ulanzi-master/` + Unit `ulanzi-master.service` (Haus-Konvention).
-  - **Cutover-pending:** alter Manager `.163` = **CT 124 `ulanzi-gateway`** (proxi,
-    Python). Auf Peer-Signal: snapshot → onboot 0 → stop → rename `-DEPRECATED`.
+  - ✅ **Cutover vollzogen (2026-05-29):** Peer hat „cutover done" gegeben
+    (Displays .134/.154 laufen verifiziert über .161). Alter Manager
+    `.163` = CT 124 → Snapshot `pre_decom_20260529` (lokal, PBS war offline) →
+    `onboot 0` → gestoppt → umbenannt `ulanzi-gateway-deprecated`. `.163` tot,
+    `.161:80` live verifiziert. CT 124 löschen nach Bewährungszeit (~2026-06) +
+    echtem PBS-Backup sobald QNAP wieder online.
   - **Offen:** .161 als feste IP via UDM-DHCP-Reservation pinnen (mit unifi-master/
     Jörg). Aktuell sticky DHCP.
 - ✅ **Migration-Verifikation + backup-master endgültig aufgeräumt**
