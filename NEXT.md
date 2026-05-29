@@ -149,9 +149,10 @@ Aus `project_proxmox_infra_session_handoff.md`:
   ist Geschichte.
 - ✅ **Source-of-Truth = allein proxmox-master.** Skript-Änderungen brauchen
   KEINEN Mirror-Push mehr (backup-master abgelöst).
-- [ ] **Pending (Hub legt Jörg per MC vor):** Soll der `Hub-Anbindung/Hulki`-
-  Abschnitt aus der jetzt-public CLAUDE.md raus (nur hier oder generell alle
-  public Repos)? Kein Secret/PII — bis Jörgs Entscheidung NICHT trimmen.
+- [x] ~~Hub/Orchestrierungs-Abschnitt aus public CLAUDE.md raus~~ — **erledigt
+  2026-05-29** (Jörg: „mach's sauber"). CLAUDE.md ist jetzt strikt Proxmox/PBS-
+  spezifisch; Fleet-Plumbing lebt nur im globalen `~/.claude/CLAUDE.md`. Kein
+  History-Rewrite nötig (kein Secret/PII).
 - [x] ~~Memory-Konsolidierung~~ — **erledigt 2026-05-29**: 6 globale
   `project_prox*`-Files bleiben **global** in `-Users-&lt;user&gt;/memory/` (Hosts sind
   cross-repo: energy-/wallbox-/venusos-master greifen drauf zu). Stale Pointer
