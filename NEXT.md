@@ -38,6 +38,10 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
 ## Heute erledigt (2026-05-29)
 
+- ✅ **Hostname prox2 CT 123 `tvheadend` → `tvheadend-master`** (Jörg via
+  unifi-master). MAC-verifiziert, live ohne Reboot, Service unberührt; tvheadend-
+  master informiert.
+- ✅ **VM 126 vibe-pi-x86 dauerhaft aus** (onboot=0, Jörg via unifi-master).
 - ✅ **IP-Konflikt .178 gelöst (Cross-Repo via unifi-master, Jörg-autorisiert):**
   CT 128 `netzgentgelte-de` (MAC ...ef:62:0a) hatte per DHCP `.178` gegriffen und
   stritt mit camping-master CT 178 (statisch .178). CT 128 dauerhaft gestoppt
