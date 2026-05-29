@@ -40,12 +40,6 @@ proxmox-master/
 
 Jörg. Identität, Email-Tabelle, WA-Kontakt: siehe globales `~/.claude/CLAUDE.md`.
 
-## Hub-Anbindung
-
-Diese Session ist Teil des claude-peers-Netzwerks (Hub = agent-master / „Hulki"
-auf `localhost:7890`). Cross-Repo-Fragen gehen via
-`mcp__claude-peers__send_message`, nicht via Repo-Wechsel.
-
 ## GitHub-Remote
 
 Dieses Repo liegt auf **`github.com/meintechblog/proxmox-master` (PUBLIC)**
