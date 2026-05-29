@@ -140,8 +140,8 @@ Aus `project_proxmox_infra_session_handoff.md`:
 - [x] ~~GitHub-Strategie festlegen + Remote anlegen~~ — **erledigt 2026-05-29**:
   `meintechblog/proxmox-master` angelegt, gepusht.
 - [x] ~~backup-master auflösen~~ — **erledigt 2026-05-29** (Jörg-Entscheidung:
-  proxmox-master public). PII/Secret-Scan sauber → `/Users/user`-Username per
-  filter-repo aus History gescrubbt (`user`→`user`) → Repo **public** → curl-URL
+  proxmox-master public). PII/Secret-Scan sauber → OS-Username aus `/Users/…`-
+  Pfaden per filter-repo aus History gescrubbt (→`user`) → Repo **public** → curl-URL
   in README/docs/installer auf proxmox-master umgebogen → tokenfrei verifiziert.
   Kein Mirror-Zwang mehr. Hub getriggert: archiviert backup-master + zieht
   Registry-Sentinel + Constraint-Memory.

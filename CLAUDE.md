@@ -55,8 +55,8 @@ Scrub). `origin` ist gesetzt, `main` trackt. Push wie üblich.
 **Public-Hygiene (WICHTIG):**
 - **Niemals** Secrets/persönliche Daten committen — `secrets/` ist gitignored,
   PBS-Passwort & Co. bleiben ausschließlich lokal in `secrets/CREDENTIALS.md`.
-- Kein Username/`/Users/<name>`-Pfad in Doku (History wurde 2026-05-29 von
-  `user`→`user` gescrubbt). Bei neuen Pfaden generisch bleiben (`~/codex/…`).
+- Kein Username/`/Users/<name>`-Pfad in Doku (History wurde 2026-05-29 vom
+  OS-Username auf `user` gescrubbt). Bei neuen Pfaden generisch bleiben (`~/codex/…`).
 - Interne RFC1918-IPs/Hostnamen sind bewusst dokumentiert (Infra-Doku, nicht
   von außen routbar) — kein Secret. Der TLS-Fingerprint im Installer ist kein
   Credential.
