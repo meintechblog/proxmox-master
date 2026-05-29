@@ -11,11 +11,14 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
   tot; Doppel-Coverage degradiert auf nur-Synology. Klären: QNAP absichtlich aus
   (Wartung) oder echter Ausfall? Letzte proxi-vzdump-Tasklogs: 23./24./25.05.
 
-- **Latenter Konflikt `.104` (Migrations-Leftover):** CT 123 `tvheadend` auf
-  **proxi UND prox2** mit IDENTISCHER MAC `BC:24:11:1B:0A:49` + statischer `.104`.
-  prox2=running (produktiv), proxi=stopped (toter Rest). Bei Start von proxi-123
-  → MAC+IP-Kollision. **Pending:** tvheadend-master gefragt ob proxis 123 weg darf
-  (Plan: statisch→DHCP, Snapshot, destroy nur auf Go).
+- ✅ **`.104`-Kollision entschärft (2026-05-29).** War CT 123 `tvheadend` auf
+  proxi+prox2 mit identischer MAC `BC:24:11:1B:0A:49` + statisch `.104`. proxi-123
+  ist ein **bewusster Cold-Rollback** (tvh-Migration 2026-05-25, per tvheadend-master
+  bestätigt — NICHT destroyen ohne Jörg). Non-destruktiv defused: proxi-123 net0 →
+  neue MAC `BC:24:11:B1:1F:C2` + DHCP (Bridge vmbr10gbit erhalten), onboot=0, alte
+  net0 in CT-Description gesichert. Kein pct-Snapshot möglich (Bind-Mount mp0).
+  prox2-123 (produktiv) unangetastet. **Offen (Jörg):** Rollback nach 4 Tagen clean
+  überhaupt noch behalten oder CT 123 retiren? (tvheadend-master flaggt's dir.)
 - **Statische IPs im DHCP-Range (.100–.250) → langfristig UDM-Reservationen:**
   .145 energy-master, .178 camping-master (proxi), .249 ip-cam-master, .104
   tvheadend (prox2), .126 vibe-pi-x86 (VM, proxi). Plus CT139 .161 (DHCP, sticky).
