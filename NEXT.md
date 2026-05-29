@@ -2,30 +2,22 @@
 
 Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
-## 🔴 DRINGEND offen (2026-05-29 entdeckt)
+## Status offene Punkte (Stand 2026-05-29)
 
-- **Zentraler PBS / QNAP offline.** proxi (.2) **und** Mac erreichen weder die
-  PBS-VM `192.168.3.9:8007` noch den QNAP-Host `qi` `192.168.3.219` (ping +
-  :8007 fail von beiden Seiten). → ganzer **QNAP TVS-1282 down**, PBS-VM mit ihm.
-  **Folge:** PBS3-Backup-Zweig ist für ALLE Hosts (proxi/prox2/Knausi/Simmelbude)
-  tot; Doppel-Coverage degradiert auf nur-Synology. Klären: QNAP absichtlich aus
-  (Wartung) oder echter Ausfall? Letzte proxi-vzdump-Tasklogs: 23./24./25.05.
-
-- ✅ **`.104`-Kollision entschärft (2026-05-29).** War CT 123 `tvheadend` auf
-  proxi+prox2 mit identischer MAC `BC:24:11:1B:0A:49` + statisch `.104`. proxi-123
-  ist ein **bewusster Cold-Rollback** (tvh-Migration 2026-05-25, per tvheadend-master
-  bestätigt — NICHT destroyen ohne Jörg). Non-destruktiv defused: proxi-123 net0 →
-  neue MAC `BC:24:11:B1:1F:C2` + DHCP (Bridge vmbr10gbit erhalten), onboot=0, alte
-  net0 in CT-Description gesichert. Kein pct-Snapshot möglich (Bind-Mount mp0).
-  prox2-123 (produktiv) unangetastet. **Offen (Jörg):** Rollback nach 4 Tagen clean
-  überhaupt noch behalten oder CT 123 retiren? (tvheadend-master flaggt's dir.)
-- **Statische IPs im DHCP-Range (.100–.250) → langfristig UDM-Reservationen:**
-  .104 tvheadend (prox2, BC:24:11:1B:0A:49), .145 energy-master (BC:24:11:50:55:2E),
-  .161 ulanzi-master (DHCP, BC:24:11:C4:CA:07), .178 camping-master (BC:24:11:B9:34:1E),
-  .249 ip-cam-master (BC:24:11:97:41:2B). unifi-master hat die MAC-Liste; setzt
-  Reservationen auf Jörgs Go (sein Revier).
-  - `.126 vibe-pi-x86` (VM 126) am 2026-05-29 dauerhaft aus (onboot=0, Jörg via
-    unifi-master) → aus der Liste raus.
+- ✅ **QNAP/PBS-Offline = absichtlich** (Jörg, 2026-05-29). QNAP `qi` (.219) +
+  PBS-VM (.9) bewusst aus → PBS3-Zweig ruht, Synology-Backup deckt weiter ab.
+  Kein Handlungsbedarf. **Merken:** solange QNAP aus → kein PBS-Backup möglich
+  (relevant für CT124-destroy + CT123-Retire, die ein PBS-Backup vorsehen).
+- ✅ **DHCP-Reservations LIVE** (unifi-master, 2026-05-29, Jörg-Go): .104/.145/
+  .161/.178/.249 fest auf MAC gepinnt. Static-IP-im-Range-Zeitbomben-Klasse erledigt.
+  (`.126 vibe-pi-x86` VM dauerhaft aus → war nicht mehr nötig.)
+- ✅ **`.104`-Kollision entschärft + CT123-Entscheidung: BEHALTEN** (Jörg via
+  tvheadend-master, 2026-05-29). proxi-CT123 ist ein bewusster Cold-Rollback
+  (tvh-Migration 2026-05-25); Netz defused (neue MAC `BC:24:11:B1:1F:C2` + DHCP,
+  onboot=0, alte net0 in Description), bleibt stopped als Netz — **in ~1-2 Wochen
+  neu bewerten** (kein destroy, zumal PBS für Pre-Destroy-Backup eh aus).
+  ⚠️ NB: Modal-Antwort sagte „retiren", spätere Jörg-Entscheidung via tvheadend-
+  master sagte „behalten" — behalten gewinnt (neuer + sicherer).
 
 ## Session-Anker
 
@@ -38,6 +30,12 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
 ## Heute erledigt (2026-05-29)
 
+- ✅ **2. LXC provisioniert: CT 144 `unifi-kb`** (Cross-Repo via unifi-master, für
+  UniFi-Knowledge-Base). proxi, IP 192.168.3.155 (DHCP, MAC `BC:24:11:A8:8C:1B`),
+  Debian 13, 4 Cores/6 GB/25 GB, nesting=1. Stack: PostgreSQL 17.10+pgvector,
+  Node v22.22.2, Python 3.13.5+venv, nginx, build-essential. Mac-SSH verifiziert.
+  App-Deploy (torch-venv, DB-Schema, vhost) macht unifi-master selbst. Deploy-Key
+  angeboten sobald KB-Repo benannt.
 - ✅ **Hostname prox2 CT 123 `tvheadend` → `tvheadend-master`** (Jörg via
   unifi-master). MAC-verifiziert, live ohne Reboot, Service unberührt; tvheadend-
   master informiert.
