@@ -11,9 +11,11 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
   tot; Doppel-Coverage degradiert auf nur-Synology. Klären: QNAP absichtlich aus
   (Wartung) oder echter Ausfall? Letzte proxi-vzdump-Tasklogs: 23./24./25.05.
 
-- **Latenter IP-Konflikt `.104`:** CT 123 `tvheadend` ist auf **proxi UND prox2**
-  mit statischer `.104` konfiguriert. Aktuell hält's prox2 (running), proxi=stopped
-  → keine akute Kollision, aber Zeitbombe. Einen der beiden bereinigen.
+- **Latenter Konflikt `.104` (Migrations-Leftover):** CT 123 `tvheadend` auf
+  **proxi UND prox2** mit IDENTISCHER MAC `BC:24:11:1B:0A:49` + statischer `.104`.
+  prox2=running (produktiv), proxi=stopped (toter Rest). Bei Start von proxi-123
+  → MAC+IP-Kollision. **Pending:** tvheadend-master gefragt ob proxis 123 weg darf
+  (Plan: statisch→DHCP, Snapshot, destroy nur auf Go).
 - **Statische IPs im DHCP-Range (.100–.250) → langfristig UDM-Reservationen:**
   .145 energy-master, .178 camping-master (proxi), .249 ip-cam-master, .104
   tvheadend (prox2), .126 vibe-pi-x86 (VM, proxi). Plus CT139 .161 (DHCP, sticky).
