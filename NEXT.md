@@ -11,6 +11,14 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
   tot; Doppel-Coverage degradiert auf nur-Synology. Klären: QNAP absichtlich aus
   (Wartung) oder echter Ausfall? Letzte proxi-vzdump-Tasklogs: 23./24./25.05.
 
+- **Latenter IP-Konflikt `.104`:** CT 123 `tvheadend` ist auf **proxi UND prox2**
+  mit statischer `.104` konfiguriert. Aktuell hält's prox2 (running), proxi=stopped
+  → keine akute Kollision, aber Zeitbombe. Einen der beiden bereinigen.
+- **Statische IPs im DHCP-Range (.100–.250) → langfristig UDM-Reservationen:**
+  .145 energy-master, .178 camping-master (proxi), .249 ip-cam-master, .104
+  tvheadend (prox2), .126 vibe-pi-x86 (VM, proxi). Plus CT139 .161 (DHCP, sticky).
+  unifi-master hat die Liste; Umstellung auf Reservationen ist sein Revier.
+
 ## Session-Anker
 
 - Cwd `/Users/user/codex/proxmox-master` ist seit 2026-05-28 **inhaltlich
@@ -22,6 +30,11 @@ Stand: 2026-05-29. Bei „weiter" hier ansetzen.
 
 ## Heute erledigt (2026-05-29)
 
+- ✅ **IP-Konflikt .178 gelöst (Cross-Repo via unifi-master, Jörg-autorisiert):**
+  CT 128 `netzgentgelte-de` (MAC ...ef:62:0a) hatte per DHCP `.178` gegriffen und
+  stritt mit camping-master CT 178 (statisch .178). CT 128 dauerhaft gestoppt
+  (`onboot=0`, kein destroy). `.178` löst jetzt sauber auf camping-master.
+  + Static-IP-Audit (.100–250) an unifi-master geliefert (siehe DRINGEND-Block).
 - ✅ **LXC für ulanzi-master/awtrix-master provisioniert** (Cross-Repo-Auftrag
   via Peer): **CT 139 `ulanzi-master`** auf proxi, IP 192.168.3.161 (DHCP, MAC
   `BC:24:11:C4:CA:07`), Debian 13, unprivileged, 2 vCPU/2 GB/8 GB, Node v22.22.2,
