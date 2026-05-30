@@ -31,6 +31,15 @@ pinnt .180 auf MAC `BC:24:11:98:5A:1E`. (Lehre: Pre-IP-Check vom PVE-Host ist
 unzuverlässig — die Bridge beantwortet lokal; echte LAN-Freiheit nur vom Mac/DHCP
 prüfen oder gleich DHCP+Reservation nehmen.)
 
+**CT148 `loxone-master` auf proxi1 provisioniert (2026-05-31):** Loxone-Wissens-Webapp
++ pgvector/RAG für loxone-master. Debian 13, **2C / 4 GiB / 20 GiB** (Storage `data`),
+unprivileged, onboot, nesting=1, UTC. Stack: **PostgreSQL 17.10 + pgvector 0.8.0**
+(Extension verifiziert), **Node 22.22 + pnpm 10.34**, git/build-essential/sudo/rsync.
+root-SSH (Mac-Key) + GitHub-Deploy-Key. App-Deploy macht loxone-master.
+**IP: 192.168.3.163 (DHCP)**, MAC `BC:24:11:A2:88:F9` — unifi-master pinnt (Inbox-Brief,
+war nachts offline). SSH vom Mac verifiziert. (Wieder DHCP+Pin statt statisch — siehe
+.147-Lehre oben.)
+
 ### 🟡 PENDING (wartet auf Jörgs Go): Frigate-LXC auf prox2 — CV-Detektions-Stack
 
 Mit llm-master + ip-cam-master geplant + gelockt (2026-05-30), **noch NICHT angelegt**.
