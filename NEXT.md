@@ -21,6 +21,16 @@ provisioniert:
   (kein plant_id=2), Master/Slave-Layer Haus↔Knausi. Logging → CT100 logging-master
   (192.168.13.10:8086, Bucket `knausi`). Knausi-Venus 192.168.13.11 (Modbus 502/MQTT 1883).
 
+**CT147 `llm-hw` auf proxi1 provisioniert (2026-05-30):** LLM-HW-Management-Webapp
+(aiohttp) für llm-master. Debian 13, **2C / 2 GiB / 12 GiB** (Storage `data`),
+unprivileged, onboot, nesting=1, UTC. Stack: uv 0.11.17 + Python 3.13 + venv/pip,
+git/build-essential/rsync. root-SSH (Mac-Key) + GitHub-Deploy-Key. App-Deploy macht
+llm-master. **IP: 192.168.3.180 (DHCP)** — NICHT .147: dort sitzt ein IP-Squatter
+(physisches Gerät, MAC `c4:5b:be:56:14:e6`), drum auf DHCP ausgewichen; unifi-master
+pinnt .180 auf MAC `BC:24:11:98:5A:1E`. (Lehre: Pre-IP-Check vom PVE-Host ist
+unzuverlässig — die Bridge beantwortet lokal; echte LAN-Freiheit nur vom Mac/DHCP
+prüfen oder gleich DHCP+Reservation nehmen.)
+
 ### 🟡 PENDING (wartet auf Jörgs Go): Frigate-LXC auf prox2 — CV-Detektions-Stack
 
 Mit llm-master + ip-cam-master geplant + gelockt (2026-05-30), **noch NICHT angelegt**.
