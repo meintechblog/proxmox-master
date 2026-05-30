@@ -1,6 +1,27 @@
 # proxmox-master — NEXT
 
-Stand: 2026-05-29. Bei „weiter" hier ansetzen.
+Stand: 2026-05-30. Bei „weiter" hier ansetzen.
+
+## ⏯️ Resume-Schnellblick (2026-05-30)
+
+**Knausi-Track erledigt:** Auf dem **Knausi-PVE-Host** (192.168.13.2, via WG-VPN,
+PVE 9.1.7, passwortloser SSH) eine neue LXC für die Wohnwagen-energy-master-Instanz
+provisioniert:
+- **CT 150 `energy-master-knausi`**, IP **192.168.13.145/24** (statisch, gw .1, DNS 1.1.1.1),
+  Debian 13, **2 vCPU / 4 GiB / 20 GiB**, unprivileged, onboot=1, nesting=1.
+- Stack (spiegelt Haus-LXC 145): **uv 0.11.17** (`/usr/local/bin`), **nginx 1.26.3**,
+  **Node 22.22 + pnpm 10.34** (corepack), git/build-essential/rsync, Zeitzone **UTC**.
+  energy-master ist **kein** Next.js → Python/FastAPI + Vite-static via nginx + SQLite
+  (kein Postgres/Docker).
+- **root-SSH:** Mac-Key `hulki@Hulki.local` autorisiert (alle Peers = selber Mac).
+- **GitHub-Deploy-Key** ed25519 auf dem Container generiert, `~/.ssh/config` → github.com;
+  Public an energy-master übergeben (muss als Repo-Deploy-Key in `meintechblog/energy-master`
+  eingetragen werden).
+- **App-Deploy macht energy-master selbst** (Lead). Architektur: eigene volle Instanz
+  (kein plant_id=2), Master/Slave-Layer Haus↔Knausi. Logging → CT100 logging-master
+  (192.168.13.10:8086, Bucket `knausi`). Knausi-Venus 192.168.13.11 (Modbus 502/MQTT 1883).
+
+---
 
 ## ⏯️ Resume-Schnellblick (2026-05-29)
 
