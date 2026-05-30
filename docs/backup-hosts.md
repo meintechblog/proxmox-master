@@ -67,8 +67,15 @@ Ladevorgänge problematisch wird, Schedule oder Mode anpassen.
 |---|---|---|---|---|
 | Wochen-Job | `sun 02:30` | alle Gäste | stop | keep-last=7 |
 
-Gäste: CT 100 (influxdb-master), 200 (mqtt-master), 201 (heimdall),
-202 (klimaanlagen-master).
+Gäste: CT 100 (logging-master/influxdb), 200 (mqtt-master), 201 (heimdall),
+202 (klimaanlagen-master), **150 (energy-master-knausi, neu 2026-05-30)**.
+
+> **CT 150 `energy-master-knausi`** (2026-05-30 provisioniert): IP
+> 192.168.13.145/24, Debian 13, 2 vCPU / 4 GiB / 20 GiB, unprivileged,
+> onboot. Stack uv + nginx + Node 22/pnpm 10, UTC. Eigene volle
+> energy-master-Instanz (Wohnwagen-Plant), App-Deploy macht energy-master.
+> Wird vom Wochen-Job automatisch miterfasst, sobald PBS wieder online ist
+> (PBS aktuell bewusst aus — siehe `NEXT.md`).
 
 Hinweis: Knausi hatte vor dem Namespace-Umzug einige Backups direkt im
 root-Namespace von PBS3 (CT 200/201/202, Mai 2026). Diese verwaisten Altstände
