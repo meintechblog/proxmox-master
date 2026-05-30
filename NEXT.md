@@ -27,14 +27,14 @@ Mit llm-master + ip-cam-master geplant + gelockt (2026-05-30), **noch NICHT ange
 Bei Go in einem Rutsch provisionieren:
 - **CT 2020 `frigate`** auf **prox2** (192.168.3.6, Intel Ultra 7 255H, 16C/46G, satt frei).
   VMID 2020 ist frei (Cam/Protect-Cluster geht bis 2014/protect-hub).
-- **privileged**, **6C / 8 GiB / 32 GiB rootfs** (local-lvm), `features: nesting=1,keyctl=1`
+- **privileged**, **6C / 6 GiB / 32 GiB rootfs** (local-lvm), `features: nesting=1,keyctl=1`
   (Docker-in-LXC — Frigate 0.17 als offizieller Docker-Container).
 - **Coral USB-TPU (2×):** `lxc.cgroup2.devices.allow: c 189:* rwm` (Major 189 verifiziert)
   + ganzes `/dev/bus/usb` binden (Re-Enum 1a6e→18d1 nach Init). **Vor dem Anlegen: Corals
   stecken → Vendor-ID/Bus verifizieren.** 2 Corals an getrennte USB-Controller.
 - **VAAPI:** `/dev/dri` binden (`c 226:* rwm` + mount) — iGPU-HW-Decode für 12-14 Cams.
-- **Clips:** `mp0: /mnt/pve/synology/frigate,mp=/media/frigate` (CIFS, 20 TB frei).
-  Recordings bleiben in UniFi Protect (detection-only), nur Clips/Snapshots/DB lokal.
+- **Storage:** detection-only → Recordings bleiben in UniFi Protect, **kein CIFS-Mount**.
+  Nur Event-Clips/Snapshots/DB lokal (klein, passen in die 32G rootfs).
 - IP: DHCP + MAC-Reservation (unifi-master pinnt, wie der Rest der Cam-Flotte).
 - Kamera-FOV: Carport .121 Primär (rechtes Bilddrittel = VLM-ROI Mülltonnen). ip-cam-master
   liefert Cam-Requirements, llm-master das CV/VLM. **Mein Part = nur LXC provisionieren.**
