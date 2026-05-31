@@ -2,6 +2,15 @@
 
 Stand: 2026-05-30. Bei „weiter" hier ansetzen.
 
+## 📌 Offene Koordination (2026-05-31, von energy-master, Brief archiviert)
+
+**pv-inverter-master will evtl. eine LXC auf dem Knausi-PVE (192.168.13.2)** für
+den Hoymiles-WR einrichten — meldet sich bei mir, wenn er Container-Support (VMID,
+IP, Specs) braucht. CT150 `energy-master-knausi` (192.168.13.145) bleibt unangetastet.
+Falls ich am Knausi-PVE an Container/Netz was anfasse → energy-master vorwarnen.
+Nebenbefund: Steuerpfad CT150 → Knausi-Venus (13.11) zeitweise instabil (MQTT/Modbus),
+Hauptverdacht alte Venus-FW (wird eh resettet) — Auge auf der 13.x-Strecke behalten.
+
 ## ⏯️ Resume-Schnellblick (2026-05-30)
 
 **Knausi-Track erledigt:** Auf dem **Knausi-PVE-Host** (192.168.13.2, via WG-VPN,
