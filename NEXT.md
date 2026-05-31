@@ -40,6 +40,15 @@ root-SSH (Mac-Key) + GitHub-Deploy-Key. App-Deploy macht loxone-master.
 war nachts offline). SSH vom Mac verifiziert. (Wieder DHCP+Pin statt statisch — siehe
 .147-Lehre oben.)
 
+**🔔 Heads-up (energy-master-Brief, 2026-05-31):** Knausi-Energiesystem wird neu
+aufgebaut (Venus-Reset via venusos-master, Hoymiles-WR via pv-inverter-master,
+STANDALONE-FIRST). **CT150 bleibt** (kein Neu-Provisioning). **pv-inverter-master**
+könnte demnächst einen eigenen LXC auf dem Knausi-PVE (192.168.13.2) für den
+Hoymiles-WR anfragen — dann VMID/IP/Specs wie üblich liefern (Muster CT150). Bei
+Eingriffen am Knausi-PVE-Netz/Container energy-master vorwarnen (CT150 nicht
+überraschen). Nebenbefund: CT150→Venus-13.11 MQTT/Modbus war zeitweise flaky
+(Verdacht alte Venus-FW, wird resettet) — falls auf der 13.x-Strecke was auffällt, melden.
+
 ### 🟡 PENDING (wartet auf Jörgs Go): Frigate-LXC auf prox2 — CV-Detektions-Stack
 
 Mit llm-master + ip-cam-master geplant + gelockt (2026-05-30), **noch NICHT angelegt**.
