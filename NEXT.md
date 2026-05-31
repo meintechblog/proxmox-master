@@ -40,6 +40,19 @@ root-SSH (Mac-Key) + GitHub-Deploy-Key. App-Deploy macht loxone-master.
 war nachts offline). SSH vom Mac verifiziert. (Wieder DHCP+Pin statt statisch — siehe
 .147-Lehre oben.)
 
+**CT151 `stromnetz-master` auf proxi1 provisioniert (2026-05-31):** Regulatorische
+PV/Speicher-Wissens-Webapp für den neuen Flotten-Peer stromnetz-master (Next.js +
+PostgreSQL/pgvector Hybrid-Suche + FastAPI-Embedding-Service e5; Stack analog
+venusos/loxone). Debian 13, **2C / 4 GiB / 2 GiB Swap / 20 GiB** (Storage `data`),
+unprivileged, nesting=1, onboot, UTC. Stack: **PostgreSQL 17.10 + pgvector 0.8.0 +
+pg_trgm 1.6** (beide Extensions in `template1` aktiviert → jede neue DB erbt sie),
+**Node 22.22 + pnpm 11.5** (corepack), **Python 3.13.5** + venv (FastAPI-Embedding,
+kein fairseq), **nginx 1.26.3** (Vhost 80→3000 macht der Peer). root-SSH (Mac-Key) +
+GitHub-Deploy-Key (in `meintechblog/stromnetz-master` eintragen). App-Deploy macht
+stromnetz-master. **IP: 192.168.3.188 (DHCP)**, MAC `BC:24:11:90:CB:E7` —
+unifi-master pinnt. (RAM/Disk bewusst über Peer-Anfrage 2-3G/10G: torch ~2-3 GB
+Disk → kein Resize nötig.)
+
 **CT149 `rvc-train` auf proxi2 provisioniert (2026-05-31):** CPU-only RVC-Voice-
 Cloning-Training für chat-llm-master (Jörgs Stimme; Mac-Tooling scheitert an
 fairseq/Applio auf Apple Silicon). **Befund:** prox2 hat NUR Intel-Arc-iGPU, kein
