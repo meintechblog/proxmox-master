@@ -40,6 +40,19 @@ root-SSH (Mac-Key) + GitHub-Deploy-Key. App-Deploy macht loxone-master.
 war nachts offline). SSH vom Mac verifiziert. (Wieder DHCP+Pin statt statisch — siehe
 .147-Lehre oben.)
 
+**CT149 `rvc-train` auf proxi2 provisioniert (2026-05-31):** CPU-only RVC-Voice-
+Cloning-Training für chat-llm-master (Jörgs Stimme; Mac-Tooling scheitert an
+fairseq/Applio auf Apple Silicon). **Befund:** prox2 hat NUR Intel-Arc-iGPU, kein
+NVIDIA/CUDA — ganze Proxmox-Flotte CUDA-frei verifiziert (alle Hosts Intel-iGPU).
+Darum CPU-Training als gründlicher Übernacht-Weg, parallel zum lokalen 90%-Weg.
+**Ubuntu 22.04** (bewusst, **Python 3.10.12** — Debian 13/Py3.13 bricht fairseq),
+**10C / 20 GiB / 4 GiB Swap / 40 GiB** (local-lvm), unprivileged, nesting=1, onboot=1.
+Vorinstalliert: build-essential, git, **ffmpeg 4.4**, libsndfile1, python3.10-venv,
+pip, rsync. root-SSH (Mac-Key) verifiziert. **IP: 192.168.3.166 (DHCP)**, MAC
+`BC:24:11:1F:BE:EA` — unifi-master pinnt. Stack-Aufbau + Monitoring macht
+chat-llm-master (PyTorch CPU-Build, kein CUDA). **Temporär** — nach erfolgreichem
+Training kann der CT weg.
+
 **🔔 Heads-up (energy-master-Brief, 2026-05-31):** Knausi-Energiesystem wird neu
 aufgebaut (Venus-Reset via venusos-master, Hoymiles-WR via pv-inverter-master,
 STANDALONE-FIRST). **CT150 bleibt** (kein Neu-Provisioning). **pv-inverter-master**
