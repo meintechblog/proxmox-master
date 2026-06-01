@@ -1,6 +1,11 @@
 # proxmox-master — NEXT
 
-Stand: 2026-05-30. Bei „weiter" hier ansetzen.
+Stand: 2026-06-01. Bei „weiter" hier ansetzen.
+
+> **Session 2026-05-31/06-01:** Nur Housekeeping — Inbox-Brief von energy-master
+> abgearbeitet (archiviert) + Koordinationsnotiz unten ergänzt. Keine
+> halbfertige Arbeit offen. Einziger wartender Punkt = die Koordination direkt
+> darunter (externer Trigger, nichts proaktiv zu tun).
 
 ## 📌 Offene Koordination (2026-05-31, von energy-master, Brief archiviert)
 
